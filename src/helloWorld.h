@@ -23,6 +23,8 @@ namespace godot
             ~helloWorld(); //destructor
             void hello_world(String words);
             void _process(double delta);
+            void set_speed(const double speed);
+            double get_speed() const;
     };
 } 
 
