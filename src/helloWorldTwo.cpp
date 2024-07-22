@@ -17,7 +17,7 @@ helloWorldTwo::helloWorldTwo()
     {
         set_process_mode(Node::ProcessMode::PROCESS_MODE_DISABLED);
     }
-    UtilityFunctions::print("Hello Davey!");
+    UtilityFunctions::print("Hello Davey Two!");
 
 }
 

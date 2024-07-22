@@ -9,6 +9,8 @@
 
 using namespace godot;
 
+//This method is a little unclear, TL;DR. Every single class that you want to register for Godot goes into the one "intialize" function.
+//Here's the link to another repo that has an example of this: https://github.com/limbonaut/limboai/blob/master/register_types.cpp
 void initialize_hello_world(ModuleInitializationLevel p_level)
 {
 	//MODULE_INITIALIZATION_LEVEL_SCENE is the stage at which we're going to initialize. Scene is when the godot is actually up and running and initializes the scenes in the editor
@@ -18,26 +20,10 @@ void initialize_hello_world(ModuleInitializationLevel p_level)
 	}
 
 	ClassDB::register_class<helloWorld>();
+	ClassDB::register_class<helloWorldTwo>();
 }
 
 void uninitialize_hello_world(ModuleInitializationLevel p_level) {
-	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-		return;
-	}
-}
-
-void initialize_hello_world_two(ModuleInitializationLevel p_level)
-{
-	//MODULE_INITIALIZATION_LEVEL_SCENE is the stage at which we're going to initialize. Scene is when the godot is actually up and running and initializes the scenes in the editor
-	//this means that this code will run when our scene is loaded.
-	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
-		return;
-	}
-
-	ClassDB::register_class<helloWorld>();
-}
-
-void uninitialize_hello_world_two(ModuleInitializationLevel p_level) {
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
@@ -63,14 +49,4 @@ extern "C"
 		return init_obj.init();
 	}
 	
-	//I think that for each c++ script you write, you need to have a separate one of these files to initialize it for godot. And each one will have its own GDExtension file as well.
-	GDExtensionBool GDE_EXPORT hello_world_two_init(GDExtensionInterfaceGetProcAddress p_get_proc_address, GDExtensionClassLibraryPtr p_library, GDExtensionInitialization *r_initialization)
-	{
-		GDExtensionBinding::InitObject init_obj(p_get_proc_address, p_library, r_initialization);
-		init_obj.register_terminator(initialize_hello_world_two);
-		init_obj.register_terminator(uninitialize_hello_world_two);
-		init_obj.set_minimum_library_initialization_level(MODULE_INITIALIZATION_LEVEL_SCENE);
-
-		return init_obj.init();
-	}
 }
