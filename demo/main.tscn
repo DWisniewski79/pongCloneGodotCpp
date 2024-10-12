@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfsdto11gt0bh"]
+
+[ext_resource type="Texture2D" uid="uid://b5smvoitj32su" path="res://icon.svg" id="1_nito3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="helloWorld" type="helloWorld" parent="."]
+speed = 500.0
+position = Vector2(222, 128)
+
+[node name="Icon" type="Sprite2D" parent="helloWorld"]
+position = Vector2(203, 36)
+texture = ExtResource("1_nito3")

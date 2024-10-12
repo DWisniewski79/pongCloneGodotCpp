@@ -40,7 +40,7 @@ void helloWorld::hello_world(String words)
 
 void helloWorld::_process(double delta)
 {
-    UtilityFunctions::print("Hey Davey, this is your process speaking");
+    
     velocity = Vector2(0.0f, 0.0f);
 
     Input& inputSingleton = *Input::get_singleton();
@@ -48,22 +48,28 @@ void helloWorld::_process(double delta)
 
     if(inputSingleton.is_action_pressed("d"))
     {
+        UtilityFunctions::print("d key pressed");
         velocity.x += 1.0f;
     }
 
      if(inputSingleton.is_action_pressed("a"))
     {
+        UtilityFunctions::print("a key pressed");
         velocity.x -= 1.0f;
     } 
     
     if(inputSingleton.is_action_pressed("w"))
     {
-        velocity.y += 1.0f;
+        UtilityFunctions::print("w key pressed");
+        velocity.y -= 1.0f;
+        UtilityFunctions::print(velocity.y);
     }
     
     if(inputSingleton.is_action_pressed("s"))
     {
-        velocity.y -= 1.0f;
+        UtilityFunctions::print("s key pressed");
+        velocity.y += 1.0f;
+        UtilityFunctions::print(velocity.y);
     }
 
     set_position(get_position() + (velocity * speed * delta));
